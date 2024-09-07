@@ -1,0 +1,54 @@
+When creating a public-facing instance on Oracle Cloud, you need to ensure that your instance is accessible over the internet. Here’s a step-by-step guide on the options you should select to make your instance publicly accessible:
+1. Create a Virtual Cloud Network (VCN)
+
+    If you don't already have a VCN, you'll need to create one.
+    Go to the Networking section and choose Virtual Cloud Networks.
+    Create a new VCN with default settings, which will include an internet gateway.
+
+2. Subnets
+
+    When creating your instance, make sure you select a Public Subnet. A public subnet is associated with a route table that has a route to the internet gateway.
+    This subnet should have a CIDR block that allows external traffic (e.g., 0.0.0.0/0).
+
+3. Internet Gateway
+
+    Ensure that the VCN has an Internet Gateway configured. This allows traffic to and from the internet.
+    If your VCN doesn't have one, create it in the Networking section under Internet Gateways, then associate it with your VCN.
+
+4. Security Lists
+
+    Update the security list associated with your public subnet.
+    Add an Ingress Rule to allow incoming traffic:
+        Source CIDR: 0.0.0.0/0 (to allow traffic from any IP)
+        Destination Port: Set this based on the service you're running (e.g., 22 for SSH, 80 for HTTP, 443 for HTTPS).
+    Ensure there's an Egress Rule that allows outgoing traffic:
+        Destination CIDR: 0.0.0.0/0
+        Source Port: Any
+        Destination Port: Any
+
+5. Instance Configuration
+
+    When configuring your instance:
+        Shape: Choose the appropriate shape based on your needs.
+        Networking: Select the VCN and the Public Subnet you set up earlier.
+        Assign a Public IP Address: Ensure the option to assign a public IP is selected so that your instance is accessible from the internet.
+
+6. Security Groups (Optional)
+
+    Oracle Cloud allows for the use of Network Security Groups (NSGs) instead of or alongside Security Lists.
+    If you're using NSGs, make sure to add appropriate ingress and egress rules to allow traffic similar to what you'd set in the Security Lists.
+
+7. Firewall Configuration on the Instance
+
+    Once the instance is up, configure the firewall on the instance itself (if applicable, such as iptables on Linux) to allow incoming traffic on the necessary ports.
+
+8. Object Storage (Optional)
+
+    If you're using object storage or other services that require public access, ensure the appropriate permissions are set to allow public access.
+
+9. Testing
+
+    After the instance is created, use the public IP address to access your instance remotely.
+    Test the connection to ensure it is accessible over the internet using the service/port you intend to expose (e.g., SSH, HTTP, etc.).
+
+By following these steps, you should be able to create an Oracle Cloud instance that is publicly accessible.

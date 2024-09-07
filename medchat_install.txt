@@ -1,0 +1,16 @@
+LM Studio:
+-download Med42 Q8
+-download Nomic embed text v1 5 q8
+-run embed server, and run Med42 model server
+
+copy MedChat_Working
+conda create -n medchat
+conda activate medchat
+pip install -r requirements.txt
+put PDFs in data directory
+python ./app.py
+click process 
+ask medical questions
+
+
+

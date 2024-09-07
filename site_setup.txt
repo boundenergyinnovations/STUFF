@@ -1,0 +1,45 @@
+npx create-next-app@latest company-chatbot
+
+cd company-chatbot
+Choose the following options when prompted:
+
+TypeScript: No (for this example, we're using JavaScript)
+ESLint: Yes
+Tailwind CSS: Yes
+src/ directory: No
+App Router: No (we're using the Pages Router for this example)
+Customize the default import alias: No
+
+npm install openai lucide-react @shadcn/ui
+
+npx shadcn-ui@latest init
+
+npx shadcn-ui@latest add alert button card
+
+npm run dev
+
+
+
+
+
+FOR VERCEL::
+Choose the following options when prompted:
+creation:
+TypeScript: Yes
+ESLint: Yes
+Tailwind CSS: Yes
+src/ directory: Yes
+App Router: Yes
+Import alias: Yes (use @/*)
+
+
+npx shadcn-ui@latest init:
+Choose the following options:
+
+Typography: Yes
+Default style: Default
+Base color: Slate
+CSS variables: Yes
+Global CSS file: src/app/globals.css
+Customize default themes: No
+Use CSS variables: Yes

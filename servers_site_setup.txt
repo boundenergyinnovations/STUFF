@@ -1,0 +1,29 @@
+-install sqlite3 or add to path
+-site package or:
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+-dumpbin /exports sqlite3.dll > sqlite3.def
+	 EXPORTS
+	 sqlite3...
+ 	 sqlite3....
+-lib /def:sqlite3.def /out:sqlite3.lib /machine:x64
+-set INCLUDE=C:\path\to\sqlite3\folder
+-set LIB=C:\path\to\directory\with\sqlite3.lib
+-cargo install diesel_cli --no-default-features --features sqlite
+-export OPENAI_API_KEY="your_openai_api_key"
+-export DATABASE_URL="sqlite://path_to_your_db_file.sqlite"
+-diesel migration generate create_messages
+	-- In up.sql
+	CREATE TABLE messages (
+	    id INTEGER PRIMARY KEY,
+	    content TEXT NOT NULL
+	);
+	
+	-- In down.sql
+	DROP TABLE messages;
+diesel migration run
+build and run:
+cargo build --release
+cargo run
+
+
+
